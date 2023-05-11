@@ -1,0 +1,58 @@
+﻿@model WeddingMallWebApp.Models.User
+
+@using (Html.BeginForm())
+{
+    @Html.AntiForgeryToken()
+    <form>
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">First Name</label>
+                @Html.EditorFor(model=> model.FName, new { 
+                    htmlAttributes = new {
+                    @class="form-control",
+                    @id="inputFirstName" ,
+                    @placeholder="Enter First Name"}
+                    })
+            </div>
+            <div class="form-group col-md-6">
+                <label for="inputAddress">Last Name</label>
+                @Html.EditorFor(model=> model.LName, new { 
+                    htmlAttributes = new {
+                    @class="form-control",
+                    @id="inputLastName" ,
+                    @placeholder="Enter Last Name"}
+                    })
+            </div>
+        </div>
+        <div class="form-group">
+            <label for="inputEmail4">Email</label>
+            @Html.EditorFor(model=> model.Email, new { 
+                    htmlAttributes = new {
+                    @class="form-control",
+                    @id="inputEmail" ,
+                    @placeholder="Enter Email"}
+                    })
+        </div>  
+        <div class="form-row">
+            <div class="form-group col-md-6">
+                <label for="inputAddress">User Name</label>
+                @Html.EditorFor(model=> model.UserName, new { 
+                    htmlAttributes = new {
+                    @class="form-control",
+                    @id="inputUserName" ,
+                    @placeholder="Enter User Name"}
+                    })
+            </div>
+            <div class="form-group">
+                <label for="inputPassword4">Password</label>
+                @Html.EditorFor(model=> model.Password, new {
+            htmlAttributes = new {
+                    @class="form-control",
+                    @id="inputPassword" ,
+                    @placeholder="Enter Password"}
+                    })
+            </div>
+        </div>
+        <button type="submit" class="btn btn-primary">Sign Up</button>
+    </form>
+}
