@@ -1,8 +1,234 @@
-﻿@{
+﻿@model IEnumerable<WeddingMallWebApp.Models.Service>
+@{
     ViewData["Title"] = "Home Page";
 }
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/css/bootstrap.min.css">
+<script src="https://cdn.jsdelivr.net/npm/jquery@3.6.4/dist/jquery.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.1/dist/umd/popper.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.6.2/dist/js/bootstrap.bundle.min.js"></script>
+<header>
+<!-- Background image -->
+    <div id="intro-example" class="p-5 text-center bg-image"></div>
+<!-- Background image -->
+</header>
+<div class="container">
+    <div class="row height d-flex justify-content-center align-items-center">
+        <div class="col-md-8">
+            <div class="search">
+                <i class="fa fa-search"></i>
+                <input type="text" class="form-control" placeholder="Search anything you want">
+                <button class="btn btn-primary">Search</button>
+            </div>
+        </div>
+    </div>
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+<div class="container">
+    <div class="category-title text-center">
+        <span>BROWSE ALL CATEGORIES</span>
+    </div>
+   <div class="card-columns">
+      <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/Astrology.jpg" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Ashtaka</h6>
+            </div>
+        </div>
+     <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/wedding_cakes.jpg" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Cake Structures</h6>
+            </div>
+        </div>
+     <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/8.jpg" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Car Rentals</h6>
+            </div>
+        </div>
+     <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/20.png" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Photographers & Studio</h6>
+            </div>
+        </div>
+     <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/22.jpg" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Wedding Planners</h6>
+            </div>
+        </div>
+     <div class="card" style="width: 18rem;">
+            <img class="card-img-top" src="http://www.weddingchannel.lk/images/categories/18.jpg" alt="" />
+            <div class="card-body">
+                <h6 class="card-text">Music Band, DJ</h6>
+            </div>
+        </div>
+  </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Fluid jumbotron</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+  </div>
+  <div class="service-title text-center">
+        <span>BROWSE ALL SERVICES</span>
+    </div>
+    
+        <div class="card-columns">
+            @foreach(var item in Model)
+            {
+                <div class="card" style="width: 18rem;">
+                    <img class="card-img-top" src="@item.Image" alt="" />
+                    <div class="card-body">
+                        <h6 class="card-text" style="font-weight: bold;">@item.Name</h6>
+                        <p>@item.Phone_No</p>
+                    </div>
+                    <div class="card-button">
+                            <form asp-action="DeleteReservation" method="post">
+                                <input type="hidden" value="@item.Id" name="ReservationId" />
+                                <button class="btnReadMore">Read More</button>
+                            </form>
+                    </div>
+
+                </div>
+            }
+    </div>
+    
+    <div class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-sm-6 newsletter-text text-white">
+                    <h3>NEWSLETTER SIGNUP</h3>
+                    <p>Get registered for monthly newsletter to updates</p>
+                </div>
+                <div class="col-sm-6 newsletter-bg">
+                <form method="post" action="/thanks-signup.php">
+                  <div class="newsletter-input">
+                      <input class="newsletter-inpup-field width100" name="email" type="email" placeholder="Your email address" required="">
+                      <input type="submit" name="submit" value="SIGNUP" class="newsletter-signup f-right" style="text-decoration: none;">
+                  </div>
+                </form>
+            </div>
+            </div>
+        </div>
+    </div>
+
+    <div class="jumbotron jumbotron-fluid">
+        <div class="container">
+            <h1 class="display-4">Fluid jumbotron</h1>
+            <p class="lead">This is a modified jumbotron that occupies the entire horizontal space of its parent.</p>
+        </div>
+    </div>
+</div>
+
+  <style>
+
+    #intro-example {
+      height: 400px;
+      background-image: url("http://www.siritha.com/wp-content/uploads/2015/02/Hero-Banners-023.jpg");
+    }
+        .height {
+            height: 10vh;
+        }
+       .search{
+       position: relative;
+/*        box-shadow: 0 0 40px #ceab56;*/
+       }
+
+       .search input{
+        height: 60px;
+        text-indent: 25px;
+        border: 2px solid #d6d4d4;
+       }
+
+       .search input:focus{
+        box-shadow: none;
+        border: 2px solid #ceab56;
+       }
+
+       .search .fa-search{
+        position: absolute;
+        top: 20px;
+        left: 16px;
+       }
+
+       .search button{
+        position: absolute;
+        top: 5px;
+        right: 5px;
+        height: 50px;
+        width: 110px;
+        background: #ceab56;
+       }
+
+       .search button:focus{
+                background: #ceab56;
+       }
+
+    .category-title{
+        font-weight: bold;
+    }
+
+    .service-title {
+        font-weight: bold;
+    }
+
+    .btnReadMore {
+        background-color: #ceab56;
+        border: none;
+        color: white;
+        padding: 3px 5px;
+        font-size: 13px;
+        cursor: pointer;
+        margin: 12px 16px;
+        border-radius: 4px;
+        height: 30px;
+    }
+
+        /* Darker background on mouse-over */
+        .btnReadMore:hover {
+            background-color: navajowhite;
+        }
+
+    .newsletter{
+        background-color: #333;
+    }
+
+    .newsletter-text{
+        padding: 5px 10px;
+    }
+
+    .newsletter-bg {
+        height: 100px;
+        background-color: #b99f24;
+    }
+
+    .newsletter-inpup-field{
+        height: 50px;
+        border-radius: 3px 0 0 3px;
+        -webkit-border-radius: 3px 0 0 3px;
+        -moz-border-radius: 3px 0 0 3px;
+        border: none;
+        padding: 0 15px;
+    }
+
+    .newsletter-signup{
+        border-radius: 0 3px 3px 0;
+        -webkit-border-radius: 0 3px 3px 0;
+        -moz-border-radius: 0 3px 3px 0;
+        border: none;
+        height: 50px;
+        text-align: center;
+        font-weight: 600;
+        width: 100px;
+        background: #383735;
+        color: #fff;
+    }
+
+    .newsletter-input{
+        margin: 20px 20px;
+    }
+
+  </style>

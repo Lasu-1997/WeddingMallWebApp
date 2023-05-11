@@ -1,5 +1,8 @@
 ﻿using Microsoft.AspNetCore.Mvc;
+using Newtonsoft.Json;
 using System.Diagnostics;
+using System.Net.Http.Json;
+using System.Text.Json.Serialization;
 using WeddingMallWebApp.Models;
 
 namespace WeddingMallWebApp.Controllers
@@ -13,9 +16,18 @@ namespace WeddingMallWebApp.Controllers
             _logger = logger;
         }
 
-        public IActionResult Index()
+        public async Task<IActionResult> Index()
         {
-            return View();
+            var services = new List<Service>();
+            using(var client = new HttpClient())
+            {
+                using(var response = await client.GetAsync("https://localhost:7268/api/Service/Getall"))
+                {
+                    var apiResponse =  await response.Content.ReadAsStringAsync();
+                    services = JsonConvert.DeserializeObject<List<Service>>(apiResponse);
+                }
+            }
+            return View(services);
         }
 
         public IActionResult Privacy()

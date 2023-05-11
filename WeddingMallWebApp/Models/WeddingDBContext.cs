@@ -9,6 +9,8 @@ namespace WeddingMallWebApp.Models
         }
 
         public DbSet<User> User { get; set; } = null;
-      
+        public DbSet<Category> Category { get; set; } = null;
+        public DbSet<Service> Service { get; set; } = null;
+
     }
 }
