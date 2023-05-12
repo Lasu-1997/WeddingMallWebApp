@@ -16,9 +16,9 @@ namespace WeddingMallWebApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(string username, string password)
+        public IActionResult Index(User user)
         {
-            var user = weddingDBContext.User.FirstOrDefault(q=>q.UserName == username && q.Password == password);
+            var userdb = weddingDBContext.User.FirstOrDefault(q=>q.UserName == user.UserName && q.Password == user.Password);
 
             if(user != null)
             {

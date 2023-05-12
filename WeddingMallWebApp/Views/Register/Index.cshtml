@@ -1,58 +1,50 @@
 ﻿@model WeddingMallWebApp.Models.User
 
-@using (Html.BeginForm())
-{
-    @Html.AntiForgeryToken()
-    <form>
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputAddress">First Name</label>
-                @Html.EditorFor(model=> model.FName, new { 
-                    htmlAttributes = new {
-                    @class="form-control",
-                    @id="inputFirstName" ,
-                    @placeholder="Enter First Name"}
-                    })
-            </div>
-            <div class="form-group col-md-6">
-                <label for="inputAddress">Last Name</label>
-                @Html.EditorFor(model=> model.LName, new { 
-                    htmlAttributes = new {
-                    @class="form-control",
-                    @id="inputLastName" ,
-                    @placeholder="Enter Last Name"}
-                    })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="inputEmail4">Email</label>
-            @Html.EditorFor(model=> model.Email, new { 
-                    htmlAttributes = new {
-                    @class="form-control",
-                    @id="inputEmail" ,
-                    @placeholder="Enter Email"}
-                    })
-        </div>  
-        <div class="form-row">
-            <div class="form-group col-md-6">
-                <label for="inputAddress">User Name</label>
-                @Html.EditorFor(model=> model.UserName, new { 
-                    htmlAttributes = new {
-                    @class="form-control",
-                    @id="inputUserName" ,
-                    @placeholder="Enter User Name"}
-                    })
-            </div>
-            <div class="form-group">
-                <label for="inputPassword4">Password</label>
-                @Html.EditorFor(model=> model.Password, new {
-            htmlAttributes = new {
-                    @class="form-control",
-                    @id="inputPassword" ,
-                    @placeholder="Enter Password"}
-                    })
-            </div>
-        </div>
-        <button type="submit" class="btn btn-primary">Sign Up</button>
-    </form>
-}
+<link rel="stylesheet" href="~/css/register.css" />
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.1/css/all.css" />
+<body>
+
+
+	 <div class="container">
+			<div class="screen">
+			<div class="screen__content">
+				@using (Html.BeginForm("Index", "Register", FormMethod.Post, new { @class = "login" }))
+				{
+					   @Html.AntiForgeryToken()
+				       @Html.ValidationSummary(true)
+
+						<div class="login__field">
+							<i class="login__icon fas fa-user"></i>
+						<input type="text" class="login__input" name="FName" id="FName" placeholder="First name">
+						</div>
+						<div class="login__field">
+							<i class="login__icon fas fa-user"></i>
+						<input type="text" class="login__input" name="LName" id="LName" placeholder="Last Name">
+						</div>
+						<div class="login__field">
+							<i class="login__icon fas fa-envelope"></i>
+						<input type="text" class="login__input" name="Email" id="Email" placeholder="Email">
+						</div>
+						<div class="login__field">
+							<i class="login__icon fas fa-user"></i>
+						    <input type="text" class="login__input" name="UserName" id="UserName" placeholder="User name">
+						</div>
+						<div class="login__field">
+							<i class="login__icon fas fa-lock"></i>
+						<input type="password" class="login__input" name="Password" id="Password" placeholder="Password">
+				 		</div>
+					    <button class="button login__submit" type="submit">
+							<span class="button__text">Sign Up Now</span>
+							<i class="button__icon fas fa-chevron-right"></i>
+						</button>				
+				}
+			</div>
+			<div class="screen__background">
+				<span class="screen__background__shape screen__background__shape4"></span>
+				<span class="screen__background__shape screen__background__shape3"></span>		
+				<span class="screen__background__shape screen__background__shape2"></span>
+				<span class="screen__background__shape screen__background__shape1"></span>
+			</div>		
+		</div>
+	</div>
+</body>

@@ -17,13 +17,18 @@ namespace WeddingMallWebApp.Controllers
             return View();
         }
         [HttpPost]
-        public IActionResult Index(User user)
+        public async Task<IActionResult> Index(User user)
         {
-            if(ModelState.IsValid)
-            {
-                weddingDBContext.User.Add(user);
-                weddingDBContext.SaveChanges();
-            }
+                using(var client = new HttpClient())
+                {
+                    using(var response = await client.PostAsJsonAsync<User>("https://localhost:7268/api/User/Add",user))
+                    {
+                        if(response.IsSuccessStatusCode)
+                        {
+                            return RedirectToAction("Index", "Login");
+                        }
+                    }
+                }
             return View(user);
         }
     }
