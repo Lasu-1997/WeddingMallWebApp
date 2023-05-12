@@ -41,7 +41,20 @@ namespace WeddingMallWebApp.Controllers
 
             return services;
         }
-        
-        
-    }
+        public IActionResult CreateService()
+        {
+            return View();
+        }
+
+        [HttpPost]
+        public async Task<IActionResult> CreateService(Service service)
+        {
+            using(var client = new HttpClient())
+            {
+                using(var response = await client.PostAsJsonAsync<Service>("https://localhost:7268/api/Service/Getall", service))
+            }
+            return View();
+        }
+
+	}
 }
